@@ -1,4 +1,5 @@
 import test from "./test.mjs";
+const tests = test("guessNumber test");
 
 /*
     Challenge: Implement the `guessNumber` function.
@@ -24,7 +25,12 @@ import test from "./test.mjs";
 // Write your function her.
 
 function guessNumber(target, guess) {
+    if (typeof target !== 'number' || target <= -1 || !Number.isInteger(target)) return null;
+    if (typeof guess !== 'number' || guess <= -1 || !Number.isInteger(guess)) return null;
 
+    if (guess < target) return "Too low";
+    if (guess > target) return "Too high";
+    return "Correct!";
 }
 
 
@@ -34,12 +40,12 @@ function guessNumber(target, guess) {
 
 console.log("");
 console.log("Basic cases");
-test.isEqual(guessNumber(10, 5), "Too low", "If target is 10 and guess is 5, return 'Too low'");
-test.isEqual(guessNumber(10, 15), "Too high", "If target is 10 and guess is 15, return 'Too high'");
-test.isEqual(guessNumber(10, 10), "Correct!", "If target is 10 and guess is 10, return 'Correct!'");
+tests.isEqual(guessNumber(10, 5), "Too low", "If target is 10 and guess is 5, return 'Too low'");
+tests.isEqual(guessNumber(10, 15), "Too high", "If target is 10 and guess is 15, return 'Too high'");
+tests.isEqual(guessNumber(10, 10), "Correct!", "If target is 10 and guess is 10, return 'Correct!'");
 
 console.log("");
-console.log("Invalid input");
+console.log("Invalid inputs");
 tests.isEqual(guessNumber("2", 4), null, "Expects null due to string in input");
 tests.isEqual(guessNumber(2, "4"), null, "Expects null due to string in input");
 tests.isEqual(guessNumber(null, 4), null, "Expects null due to null in input");
