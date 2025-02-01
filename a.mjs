@@ -1,9 +1,11 @@
 import test from "./test.mjs";
+const tests = test("Multiplication test");
+
 
 /*
     Challenge: Implement the `multiply` function.
 
-    The function `multiply` takes an indefinit number of parameters (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
+    The function `multiply` takes an indefinite number of parameters (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
     It should return the product of the numbers, with the following constraints:
 
     1. If one or more of the parameters are not valid numbers, the function should return NaN (Not a Number).
@@ -20,7 +22,14 @@ import test from "./test.mjs";
 //#region function -----------------------------------------------------------------
 // Write your function her.
 
+function multiply(...numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+        if (isNaN(numbers[i])) return NaN;
+        numbers[i] = Number(numbers[i]);
+    }
 
+    return numbers.reduce((total, next) => total * next, 1);
+}
 
 //#endregion
 
