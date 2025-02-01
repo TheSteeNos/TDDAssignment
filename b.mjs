@@ -31,6 +31,10 @@ import test from "./test.mjs";
 //#region Tests --------------------------------------------------------------------
 // Write your tests her.
 
-
+tests.isEqual(formatName(540), null, "Expects null as input isn't a string");
+tests.isEqual(formatName('     Donald Duck  '), 'Donald Duck', 'Expects removal of spaces in front and behind');
+tests.isEqual(formatName('donald duck'), 'Donald Duck', 'Expects to capitalize first letters of each word');
+tests.isEqual(formatName('  '), '', 'Expects empty string as function removes spaces');
+tests.isEqual(formatName('donaldduck@gmail.com'), null, 'Expects null as input has special characters');
 
 //#endregion
