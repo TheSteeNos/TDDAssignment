@@ -1,4 +1,5 @@
 import test from "./test.mjs";
+const tests = test("Sum Function");
 
 /*
     Challenge: Implement the `sequence` function.
@@ -11,13 +12,28 @@ import test from "./test.mjs";
 */
 
 function sequence(n) {
+    if (typeof n !== "number" || !Number.isInteger(n) || n < 0) return null;
 
+    if (n == 1) return 1;
+    if (n == 0) return 0;
+
+    let sum1 = 0;
+    let sum2 = 1;
+    let total;
+    
+    for (let i = 2; i <= n; i++) {
+        total = sum1 + sum2;
+        sum1 = sum2;
+        sum2 = total;
+    }
+    
+    return sum2;
 }
 
 //#region Tests --------------------------------------------------------------------
-const tests = test("Sum function");
 
-// Basic cases
+console.log("");
+console.log("Basic cases");
 tests.isEqual(sequence(0), 0, "For n = 0, the function should return 0");
 tests.isEqual(sequence(1), 1, "For n = 1, the function should return 1");
 tests.isEqual(sequence(2), 1, "For n = 2, the function should return 1");
@@ -27,10 +43,12 @@ tests.isEqual(sequence(5), 5, "For n = 5, the function should return 5");
 tests.isEqual(sequence(6), 8, "For n = 6, the function should return 8");
 tests.isEqual(sequence(10), 55, "For n = 10, the function should return 55");
 
-// Large input
+console.log("");
+console.log("Large input");
 tests.isEqual(sequence(20), 6765, "For n = 20, the function should return 6765");
 
-// Edge cases
+console.log("");
+console.log("Edge cases");
 tests.isEqual(sequence(-1), null, "Negative input should return null");
 tests.isEqual(sequence(1.5), null, "Non-integer input should return null");
 tests.isEqual(sequence("5"), null, "String input should return null");
