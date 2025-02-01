@@ -1,4 +1,5 @@
 import test from "./test.mjs";
+const tests = test("Multiplication test");
 
 /*
     Challenge: Implement the `formatName` function.
@@ -20,7 +21,17 @@ import test from "./test.mjs";
 //#region function -----------------------------------------------------------------
 // Write your function her.
 
+function formatName(input) {
+    if (typeof input !== "string" || /[^a-zA-Z\s]/.test(input)) return null;
 
+    input = input.trim();
+    let parts = input.split(' ');
+    for (let i = 0; i < parts.length; i++) {
+        parts[i] = parts[i].charAt(0).toUpperCase() + parts[i].slice(1).toLowerCase();
+    }
+
+    return parts.join(' ');
+}
 
 //#endregion
 
