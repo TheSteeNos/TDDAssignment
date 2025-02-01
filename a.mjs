@@ -1,7 +1,6 @@
 import test from "./test.mjs";
 const tests = test("Multiplication test");
 
-
 /*
     Challenge: Implement the `multiply` function.
 
@@ -34,12 +33,16 @@ function multiply(...numbers) {
 //#endregion
 
 
-
-
-
 //#region Tests --------------------------------------------------------------------
 // Write your tests her.
 
-
+tests.isEqual(multiply(4, 3, 5, 9), 540, 'Expects sum of 4x3x5x9 which is 540');
+tests.isEqual(multiply(4,'3',5, '9'), 540, 'Expects to modify strings to integers, then multiply, expects 540');
+tests.isEqual(multiply(4, 0, 5, 9), 0, 'Expects 0 if multiplied by 0');
+tests.isNotANumber(multiply(4, 'hello world', 3), 'Expects NaN if input includes values which are not numbers');
+tests.isNotANumber(multiply(NaN, 3, 5, 9), 'Expects NaN if NaN is included in input');
+tests.isEqual(multiply(4, Infinity), Infinity, 'Expects Infinity');
+tests.isEqual(multiply(4, -Infinity), -Infinity, 'Expects -Infinity');
+tests.isEqual(multiply(-4, Infinity), -Infinity, 'Expects -Infinity');
 
 //#endregion
