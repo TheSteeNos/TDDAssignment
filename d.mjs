@@ -32,15 +32,22 @@ function guessNumber(target, guess) {
 
 //#region Tests --------------------------------------------------------------------
 
-// Basic cases
+console.log("");
+console.log("Basic cases");
 test.isEqual(guessNumber(10, 5), "Too low", "If target is 10 and guess is 5, return 'Too low'");
 test.isEqual(guessNumber(10, 15), "Too high", "If target is 10 and guess is 15, return 'Too high'");
 test.isEqual(guessNumber(10, 10), "Correct!", "If target is 10 and guess is 10, return 'Correct!'");
 
-// Invalid inputs
+console.log("");
+console.log("Invalid input");
+tests.isEqual(guessNumber("2", 4), null, "Expects null due to string in input");
+tests.isEqual(guessNumber(2, "4"), null, "Expects null due to string in input");
+tests.isEqual(guessNumber(null, 4), null, "Expects null due to null in input");
+tests.isEqual(guessNumber(2, undefined), null, "Expects null due to undefined in input");
+tests.isEqual(guessNumber(2, 4.2), null, "Expects null due to non-integer in input");
 
-
-// Edge cases
-
+console.log("");
+console.log("Edge cases");
+tests.isEqual(guessNumber(0, 0), "Correct!", "Expects 'Correct!' as input has guessed target");
 
 //#endregion
